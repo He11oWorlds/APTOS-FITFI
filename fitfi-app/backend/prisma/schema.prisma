@@ -57,7 +57,11 @@ model UserQuestProfile {
 
   user       User     @relation(fields: [user_id], references: [user_id])
   quest      Quest    @relation(fields: [quest_id], references: [quest_id])
+
+  @@unique([user_id, quest_id]) // ✅ Add this line
 }
+
+
 
 model TrackSession {
   session_id BigInt   @id @default(autoincrement())
