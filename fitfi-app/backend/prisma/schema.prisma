@@ -29,22 +29,30 @@ model User {
 }
 
 model Quest {
-  quest_id       BigInt           @id @default(autoincrement())
-  title          String
-  description    String
-  target_steps   BigInt
-  reward_type    String
-  points         BigInt
-  completed      Boolean
-  claimed_at     DateTime
-  difficulty     String
+  quest_id     BigInt   @id @default(autoincrement())
+  title        String
+  description  String
+  target_steps BigInt           // For legacy/manual quests (optional for steps only)
+  reward_type  String           // 'daily', 'weekly', etc.
+  points       BigInt
+  completed    Boolean
+  claimed_at   DateTime
+  difficulty   String
 
-  // Relations
+  // ✅ Daily quest support
+  type         String?          // 'steps', 'distance', 'duration', 'calories'
+  goal         Int?             // Generic goal value
+  unit         String?          // Unit like 'km', 'minutes'
+  is_daily     Boolean?         // If true, generated automatically
+  created_at   DateTime? @default(now())
+
+  // Relations (assumed already defined):
   userProfiles   UserQuestProfile[]
   claims         RewardClaim[]
   mapTracks      MapTrack[]
   trackSessions  TrackSession[]
 }
+
 
 model UserQuestProfile {
   uqp_id     BigInt   @id @default(autoincrement())

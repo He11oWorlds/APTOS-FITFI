@@ -11,6 +11,10 @@ export class QuestController {
   getAllQuests() {
     return this.questService.getAllQuests();
   }
+  @Get('daily')
+getDailyQuests() {
+  return this.questService.getTodayQuests();
+}
 
   @Get('user/:user_id')
   getUserQuests(@Param('user_id') user_id: string) {
