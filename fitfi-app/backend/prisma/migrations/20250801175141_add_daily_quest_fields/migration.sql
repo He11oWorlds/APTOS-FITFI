@@ -1,6 +1,0 @@
--- AlterTable
-ALTER TABLE "Quest" ADD COLUMN     "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-ADD COLUMN     "goal" INTEGER,
-ADD COLUMN     "is_daily" BOOLEAN,
-ADD COLUMN     "type" TEXT,
-ADD COLUMN     "unit" TEXT;
